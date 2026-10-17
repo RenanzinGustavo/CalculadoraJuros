@@ -1,0 +1,22 @@
+{
+  "info": "Use POST para os endpoints abaixo com Content-Type: application/json.",
+  "v1": {
+    "url": "http://localhost:5080/api/v1/juros",
+    "body": {
+      "valorInicial": 1000,
+      "taxaMensalPercentual": 2,
+      "meses": 12,
+      "tipoJuros": "compostos"
+    }
+  },
+  "v2": {
+    "url": "http://localhost:5080/api/v2/juros",
+    "body": {
+      "valorInicial": 1000,
+      "taxaMensalPercentual": 2,
+      "meses": 12,
+      "tipoJuros": "compostos",
+      "incluirParcelaEstimada": true
+    }
+  }
+}

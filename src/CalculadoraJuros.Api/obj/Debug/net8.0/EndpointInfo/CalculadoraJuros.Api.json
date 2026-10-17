@@ -1,0 +1,316 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CalculadoraJuros.Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/juros": {
+      "post": {
+        "tags": [
+          "JurosV1"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV1"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV1"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV1"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/juros": {
+      "post": {
+        "tags": [
+          "JurosV2"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV2"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV2"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JurosRequestV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV2"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV2"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JurosResponseV2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JurosRequestV1": {
+        "required": [
+          "tipoJuros"
+        ],
+        "type": "object",
+        "properties": {
+          "valorInicial": {
+            "maximum": 79228162514264337593543950335,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "taxaMensalPercentual": {
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "meses": {
+            "maximum": 600,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoJuros": {
+            "minLength": 1,
+            "pattern": "(?i)^(simples|compostos)$",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JurosRequestV2": {
+        "required": [
+          "tipoJuros"
+        ],
+        "type": "object",
+        "properties": {
+          "valorInicial": {
+            "maximum": 79228162514264337593543950335,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "taxaMensalPercentual": {
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "meses": {
+            "maximum": 600,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoJuros": {
+            "minLength": 1,
+            "pattern": "(?i)^(simples|compostos)$",
+            "type": "string"
+          },
+          "incluirParcelaEstimada": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JurosResponseV1": {
+        "type": "object",
+        "properties": {
+          "versaoApi": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorInicial": {
+            "type": "number",
+            "format": "double"
+          },
+          "juros": {
+            "type": "number",
+            "format": "double"
+          },
+          "montante": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxaMensalPercentual": {
+            "type": "number",
+            "format": "double"
+          },
+          "meses": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoJuros": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JurosResponseV2": {
+        "type": "object",
+        "properties": {
+          "versaoApi": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorInicial": {
+            "type": "number",
+            "format": "double"
+          },
+          "juros": {
+            "type": "number",
+            "format": "double"
+          },
+          "montante": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxaMensalPercentual": {
+            "type": "number",
+            "format": "double"
+          },
+          "meses": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoJuros": {
+            "type": "string",
+            "nullable": true
+          },
+          "parcelaEstimada": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    }
+  }
+}

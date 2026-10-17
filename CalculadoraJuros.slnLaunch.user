@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "src\\CalculadoraJuros.Api\\CalculadoraJuros.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\CalculadoraJuros.WinForms\\CalculadoraJuros.WinForms.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
